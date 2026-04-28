@@ -1,0 +1,50 @@
+{% set name = "azure-mgmt-containerregistrytasks" %}
+{% set version = "1.0.0b1" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_')}}-{{ version }}.tar.gz
+  sha256: d6730dd5c9bfca9fdf0fe0f933706d3c7fb855ca10c56850650b070e9c6caf51
+
+build:
+  number: 0
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  skip: true  # [py<39]
+
+requirements:
+  host:
+    - python
+    - setuptools >=77.0.3
+    - wheel
+    - pip
+  run:
+    - python
+    - isodate >=0.6.1
+    - azure-mgmt-core >=1.6.0
+    - typing-extensions >=4.6.0
+
+test:
+  imports:
+    - azure_mgmt_containerregistrytasks
+  commands:
+    - pip check
+  requires:
+    - pip
+
+about:
+  home: https://github.com/Azure/azure-sdk-for-python
+  summary: Microsoft Azure Containerregistrytasks Management Client Library for Python
+  license: MIT
+  license_file: LICENSE
+  license_family: MIT
+  description: |
+    This is the Microsoft Azure Containerregistrytasks Management Client Library.
+  doc_url: https://docs.microsoft.com/en-us/azure/developer/python
+  dev_url: https://github.com/Azure/azure-sdk-for-python
+
+extra:
+  recipe-maintainers:
+    - and300u250w
