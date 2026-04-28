@@ -28,7 +28,7 @@ requirements:
 
 test:
   imports:
-    - azure_mgmt_containerregistrytasks
+    - azure.mgmt.containerregistrytasks
   commands:
     - pip check
   requires:
